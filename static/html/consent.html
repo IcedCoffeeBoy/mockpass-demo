@@ -1,40 +1,97 @@
+<!DOCTYPE html>
 <html>
-  <head><title>MyInfo - Consent to giving details</title></head>
-  <body>
-    Disclose the following details of {{ id }} to this provider?
-    <form action="{{action}}" method="post">
-      <div>
-        <label for="scope">Scope</label>
-        <input type="text" id="scope" name="scope" value="{{scope}}" readonly="readonly">
-      </div>
-      <div>
-        <label for="state">State</label>
-        <input type="text" id="state" name="state" value="{{state}}" readonly="readonly">
-      </div>
-      <div>
-        <label for="client_id">Client ID</label>
-        <input type="text" id="client_id" name="client_id" value="{{client_id}}" readonly="readonly">
-      </div>
-      <div>
-        <label for="purpose">Purpose</label>
-        <input type="text" id="purpose" name="purpose" value="{{purpose}}" readonly="readonly">
-      </div>
-      <div>
-        <label for="redirect_uri">Redirect to:</label>
-        <input type="text" id="redirect_uri" name="redirect_uri" value="{{redirect_uri}}" readonly="readonly">
-      </div>
-      <div>
-        Decision:
-        <div>
-          <input type="radio" id="allow" name="decision" value="allow" checked>
-          <label for="allow">Allow</label>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="OAuth2 Authorization">
+    <title>Consent Platform</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://test.consent.myinfo.gov.sg/consent-page-template/theme/default/css/bootstrap-3.3.7-custom.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://test.consent.myinfo.gov.sg/consent-page-template/theme/default/css/structure.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    <style type="text/css">
+        @import url("https://fonts.googleapis.com/css?family=Roboto");
+
+        a {
+            color: #666;
+        }
+
+        .main-logo-holder {
+            margin-bottom: 0px;
+        }
+    </style>
+    <script type="text/javascript">var formSubmitted = false;
+        function submit_form() {
+            if (formSubmitted) {
+                return false;
+            } else {
+                formSubmitted = true;
+                return true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="main-logo-holder" id="loginBaseLogo"><img class="main-logo"
+                src="https://test.consent.myinfo.gov.sg/consent-page-template/images/myinfo-com/logo.png" width="210px"
+                height="104px" alt="logo"></div>
+        <div id="content">
+            <div class="container">
+                <form action="{{action}}" method="post">
+                    <fieldset>
+                        <p>MyInfo retrieves personal data from relevant government agencies to pre-fill the relevant
+                            fields, making digital transactions faster and more convenient.</p>
+                        <p><strong>This digital service is requesting the following information from MyInfo, for the
+                                purpose of <span id="purpose">demonstrating MyInfo APIs</span></strong></p>
+                        <div class="panel-group form-horizontal" aria-multiselectable="true">
+                            <ol class="list-unstyled sidenav-submenu collapse in" id="sortedscopelist"
+                                aria-expanded="true">
+                                <li><strong><i class="fa fa-fw fa-angle-right"></i>NRIC/FIN</strong></li>
+                                <li><strong><i class="fa fa-fw fa-angle-right"></i>Name</strong></li>
+                                <li><strong><i class="fa fa-fw fa-angle-right"></i>Sex</strong></li>
+                                <li><strong><i class="fa fa-fw fa-angle-right"></i>Race</strong></li>
+                                <li><strong><i class="fa fa-fw fa-angle-right"></i>Nationality</strong></li>
+                                <li><strong><i class="fa fa-fw fa-angle-right"></i>Date of Birth</strong></li>
+                                <li><strong><i class="fa fa-fw fa-angle-right"></i>Email</strong></li>
+                                <li><strong><i class="fa fa-fw fa-angle-right"></i>Mobile Number</strong></li>
+                                <li><strong><i class="fa fa-fw fa-angle-right"></i>Employment</strong>
+                                </li>
+
+                            </ol>
+                            <p>&nbsp;</p>
+                            <p></p>
+                            Clicking the "I Agree" button permits this digital service to retrieve your data
+                            based on the
+                            <span color="red">
+                                <a href="https://www.singpass.gov.sg/myinfo/common/terms" target="_blank">Terms of
+                                    Use.
+                                </a>
+                            </span>
+                        </div>
+                        <input type="hidden" name="realm" aria-hidden="true" value="myinfo-com">
+                        <input type="hidden" name="redirect_uri" aria-hidden="true" value="{{redirect_uri}}">
+                        <input type="hidden" name="scope" aria-hidden="true" value="{{scope}}">
+                        <input type="hidden" name="state" aria-hidden="true" value="{{state}}">
+                        <input type="hidden" name="client_id" aria-hidden="true" value="{{client_id}}">
+                        <div class="form-group clearfix">
+                            <div style="text-align:center; margin-top:20px">
+                                <button class="btn btn-primary col-md-2 col-xs-12 col-md-offset-3" id="allow"
+                                    type="submit" name="decision" value="allow">I Agree</button>
+                                <button class="btn btn-default col-md-2 col-xs-12" id="deny" type="submit"
+                                    name="decision" value="deny">No Thanks
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
         </div>
-        <div>
-          <input type="radio" id="deny" name="decision" value="deny">
-          <label for="deny">Deny</label>
-        </div>
-      </div>
-      <input type="submit" value="Submit">
-    </form>
-  </body>
+    </div>
+</body>
+
 </html>
